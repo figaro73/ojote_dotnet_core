@@ -1,0 +1,128 @@
+<definitions
+  name="jogviszonyV10"
+  targetNamespace="http://ojote/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:tns="http://ojote/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+ <types>
+  <schema
+    xmlns="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://ojote/"
+    elementFormDefault="qualified"
+    xmlns:tns="http://ojote/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/">
+   <element name="jogviszonyV10Element">
+    <complexType>
+     <sequence>
+      <element name="program_azon" type="string" nillable="true"/>
+      <element name="ruser" type="string" nillable="true"/>
+      <element name="mode" type="string" nillable="true"/>
+      <element name="taj" type="string" nillable="true"/>
+      <element name="szVezetek" type="string" nillable="true"/>
+      <element name="szUtonev1" type="string" nillable="true"/>
+      <element name="szUtonev2" type="string" nillable="true"/>
+      <element name="szHely" type="string" nillable="true"/>
+      <element name="szEv" type="string" nillable="true"/>
+      <element name="szHo" type="string" nillable="true"/>
+      <element name="szNap" type="string" nillable="true"/>
+      <element name="neme" type="string" nillable="true"/>
+      <element name="aVezetek" type="string" nillable="true"/>
+      <element name="aUtonev1" type="string" nillable="true"/>
+      <element name="aUtonev2" type="string" nillable="true"/>
+      <element name="date" type="string" nillable="true"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="jogviszonyV10ResponseElement">
+    <complexType>
+     <sequence>
+      <element name="result" type="tns:jogviszonyV10Return" nillable="true"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="jogviszonyV10Return">
+    <sequence>
+     <element name="user" type="string" nillable="true"/>
+     <element name="tranKod" type="string" nillable="true"/>
+     <element name="hibaTipus" type="string" nillable="true"/>
+     <element name="hibaSzoveg" type="string" nillable="true"/>
+     <element name="hibaKod" type="string" nillable="true"/>
+     <element name="jogviszony" type="string" nillable="true"/>
+     <element name="kozlemeny" type="string" nillable="true"/>
+    </sequence>
+   </complexType>
+   <element name="jogviszonyTAJV10Element">
+    <complexType>
+     <sequence>
+      <element name="program_azon" type="string" nillable="true"/>
+      <element name="ruser" type="string" nillable="true"/>
+      <element name="taj" type="string" nillable="true"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="jogviszonyTAJV10ResponseElement">
+    <complexType>
+     <sequence>
+      <element name="result" type="tns:jogviszonyV10Return" nillable="true"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </types>
+ <message name="jogviszonyV10_jogviszonyV10">
+  <part name="parameters" element="tns:jogviszonyV10Element"/>
+ </message>
+ <message name="jogviszonyV10_jogviszonyV10Response">
+  <part name="parameters" element="tns:jogviszonyV10ResponseElement"/>
+ </message>
+ <message name="jogviszonyV10_jogviszonyTAJV10">
+  <part name="parameters" element="tns:jogviszonyTAJV10Element"/>
+ </message>
+ <message name="jogviszonyV10_jogviszonyTAJV10Response">
+  <part name="parameters" element="tns:jogviszonyTAJV10ResponseElement"/>
+ </message>
+ <portType name="jogviszonyV10">
+  <operation name="jogviszonyV10">
+   <input message="tns:jogviszonyV10_jogviszonyV10"/>
+   <output message="tns:jogviszonyV10_jogviszonyV10Response"/>
+  </operation>
+  <operation name="jogviszonyTAJV10">
+   <input message="tns:jogviszonyV10_jogviszonyTAJV10"/>
+   <output message="tns:jogviszonyV10_jogviszonyTAJV10Response"/>
+  </operation>
+ </portType>
+ <binding name="jogviszonyV10SoapHttp" type="tns:jogviszonyV10">
+  <security mode="TransportWithMessageCredential">
+    <message clientCredentialType="UserName"/>
+  </security>
+  <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="jogviszonyV10">
+   <soap:operation soapAction="http://ojote//jogviszonyV10"/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="jogviszonyTAJV10">
+   <soap:operation soapAction="http://ojote//jogviszonyTAJV10"/>
+   <input>
+    <soap:body use="literal"/>
+   </input>
+   <output>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+ </binding>
+ <service name="jogviszonyV10">
+  <port name="jogviszonyV10SoapHttpPort" binding="tns:jogviszonyV10SoapHttp">
+   <soap:address location="https://tesztjogviszony.neak.gov.hu/ojote/jogviszonyV10"/>
+  </port>
+ </service>
+</definitions>
